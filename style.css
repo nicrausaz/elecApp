@@ -15,31 +15,6 @@ td {
     padding: 10px;
 }
 
-.pageContent {
-    padding-top: 10px;
-    padding-left: 30%;
-}
-.forms{
-    margin:25%;
-    text-align: center;
-}
-
-.legends {
-    margin-right: 10px;
-}
-
-#menulist {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-top: 20px;
-    width: 25%;
-    background-color: #f1f1f1;
-    height: 100%;
-    position: fixed;
-    overflow: auto;
-}
-
 li a {
     display: block;
     color: #000;
@@ -55,4 +30,34 @@ li a.active {
 li a:hover:not(.active) {
     background-color: #555;
     color: white;
+}
+
+.pageContent {
+    padding-top: 10px;
+    padding-left: 30%;
+}
+
+.forms {
+    margin: 25%;
+    text-align: center;
+}
+
+.legends {
+    padding-bottom: 29px;
+}
+
+#menulist {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    width: 25%;
+    background-color: #f1f1f1;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+}
+
+#requestedAttribute {
+    margin-right: 50px;
 }

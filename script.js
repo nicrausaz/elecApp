@@ -24,7 +24,7 @@ function sendDatas() {
 }
 
 function printErrorMsg() {
-    document.getElementById("errorSection").innerHTML = "Please entre values in both fields";
+    document.getElementById("errorSection").innerHTML = "Please enter values in both fields";
 }
 
 function checkDatas() {
