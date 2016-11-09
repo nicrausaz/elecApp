@@ -8,10 +8,10 @@ function sendDatas() {
         console.log("connected to DB");
         // Create a collection we want to drop later
         var col = db.collection('user');
+        var userFirstname = document.getElementById("firstname").value;
+        var userName = document.getElementById("name").value;
         // Insert a bunch of documents
-        col.insert([{ a: 1, b: 1 }
-            , { a: 2, b: 2 }, { a: 3, b: 3 }
-            , { a: 4, b: 4 }], { w: 1 }, function (err, result) {
+        col.insert([{ firstname: userFirstname, name: userName }], function (err, result) {
                 test.equal(null, err);
             });
     });
