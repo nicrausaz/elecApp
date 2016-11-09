@@ -27,15 +27,16 @@
 			<legend class="legends">Enter your datas</legend>
 			<table class="forms">
 				<tr>
-					<td><input type="text" placeholder="Prénom" id="firstname"></td>
+					<td><input type="text" placeholder="Prénom" id="firstname" required></td>
 				</tr>
 				<tr>
-					<td><input type="text" placeholder="Nom" id="name"></td>
+					<td><input type="text" placeholder="Nom" id="name" required></td>
 				</tr>
 				<tr>
-					<td><button type="submit" class="pure-button pure-button-primary" onclick="sendDatas()">GO</button></td>
+					<td><button type="submit" class="pure-button pure-button-primary" onclick="checkDatas()">GO</button></td>
 				</tr>
 			</table>
+			<section id="errorSection"></section>
 		</form>
 	</div>
 
