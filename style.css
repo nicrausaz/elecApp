@@ -2,6 +2,32 @@ body {
     margin: 0;
 }
 
+header {
+    background-color: #f1f1f1;
+    border-color: black;
+}
+
+footer {
+    background-color: #f1f1f1;
+}
+
+td {
+    padding: 10px;
+}
+
+.pageContent {
+    padding-top: 10px;
+    padding-left: 30%;
+}
+.forms{
+    margin:25%;
+    text-align: center;
+}
+
+.legends {
+    margin-right: 10px;
+}
+
 #menulist {
     list-style-type: none;
     margin: 0;
@@ -29,8 +55,4 @@ li a.active {
 li a:hover:not(.active) {
     background-color: #555;
     color: white;
-}
-
-#pageContent {
-    padding-left: 30%;
 }
