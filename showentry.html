@@ -3,9 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Home</title>
+	<title>Sort data</title>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
+	<script>showData();</script>
 </head>
 
 <body>
@@ -23,14 +25,17 @@
 
 	<div class="pageContent">
 		<form class="pure-form">
-			<legend class="legends">Select your datas</legend>
+			<legend class="legends">Select your data</legend>
 			<select id="requestedAttribute">
+				<option>Select attribute</option>
 				<option>Prénom</option>
 				<option>Nom</option>
 			</select>
-			<input type="text" class="pure-input-rounded">
+			<input type="text" class="pure-input-rounded" placeholder="expression to search">
 			<button type="submit" class="pure-button">Search</button>
 		</form>
+		<div id="displayCollectionDiv">
+		</div>
 	</div>
 
 </body>
