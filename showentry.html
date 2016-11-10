@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script.js"></script>
-	<script>showData();</script>
+	<script>//showData();</script>
 </head>
 
 <body>
@@ -22,16 +22,16 @@
 	</div>
 
 	<div class="pageContent">
-		<form class="pure-form">
+		<div class="pure-form">
 			<legend class="legends">Select your data</legend>
 			<select id="requestedAttribute">
-				<option>Select attribute</option>
-				<option>Prénom</option>
-				<option>Nom</option>
+				<option value="notSelected">Select attribute</option>
+				<option value="firstname">Firstname</option>
+				<option value="name">Name</option>
 			</select>
-			<input type="text" class="pure-input-rounded" placeholder="expression to search">
-			<button type="submit" class="pure-button">Search</button>
-		</form>
+			<input type="text" class="pure-input-rounded" id="requestedExpression" placeholder="expression to search">
+			<button type="submit" class="pure-button" onclick="showDataAccordingToSelection()">Search</button>
+		</div>
 		<div id="displayCollectionDiv"></div>
 		<div>
 			<!--<button class="button-warning pure-button">Clear</button>-->

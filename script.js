@@ -1,6 +1,5 @@
-
+// SCRIPTS FOR ADDENTRY.HTML
 function sendDatas() {
-
     var MongoClient = require('mongodb').MongoClient,
         test = require('assert');
 
@@ -38,6 +37,17 @@ function checkData() {
     return ((error1 && error2) ? sendDatas() : printErrorMsg());
 }
 
+
+// SCRIPTS FOR SHOWENTRY
+
+function getSelectedAttribute() {
+    return document.getElementById("requestedAttribute").value;
+}
+
+function getSelectedExpression() {
+    return document.getElementById("requestedExpression").value;
+}
+
 function showData() {
     var MongoClient = require('mongodb').MongoClient;
 
@@ -49,18 +59,43 @@ function showData() {
 
         if (err) { dbErrorDiv.innerHTML = dbErrorMsg }
 
-        var collection = db.collection('user');
-        var docs = [{ firstname: "Nicolas", name: "Crausaz" }];
+        var col = db.collection('user');
 
-
-        collection.find({ firstname: "Nicolas" }).toArray(function (err, results) {
-            if (results != ""){
+        //show all data
+        col.find().toArray(function (err, results) {
+            if (results != "") {
                 document.getElementById("displayCollectionDiv").innerHTML = JSON.stringify(results);
-            }else{
+            } else {
                 document.getElementById("dbErrors").innerHTML = "No data were found";
             }
         });
+    });
+}
 
-        //collection.findOne({ firstname: "Nicolas" }, function (err, item) { });
+function showDataAccordingToSelection() {
+    console.log("Looking for your request");
+    var MongoClient = require('mongodb').MongoClient;
+
+    var dbErrorDiv = document.getElementById("dbErrors");
+    var dbErrorMsg = "An error occured while trying to connecting to db";
+
+    var attribute = getSelectedAttribute();
+    var expression = getSelectedExpression();
+
+    console.log(attribute + " " + expression);
+
+    MongoClient.connect("mongodb://localhost:27017/test", function (err, db) {
+
+        if (err) { dbErrorDiv.innerHTML = dbErrorMsg }
+        var col = db.collection('user');
+
+        //show all data
+        col.find({ "firstname": expression }).toArray(function (err, results) {
+            if (results != "") {
+                document.getElementById("displayCollectionDiv").innerHTML = JSON.stringify(results);
+            } else {
+                document.getElementById("dbErrors").innerHTML = "No data were found";
+            }
+        });
     });
 }
