@@ -1,7 +1,6 @@
 
-
-
 function sendDatas() {
+
     var MongoClient = require('mongodb').MongoClient,
         test = require('assert');
 
@@ -9,7 +8,7 @@ function sendDatas() {
     var url = 'mongodb://localhost:27017/test';
 
     // Connect using MongoClient
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(url, function (err, db) {
         console.log("connected to DB");
 
         // Create a collection
@@ -20,7 +19,7 @@ function sendDatas() {
         var userName = document.getElementById("name").value;
 
         // Insert data as documents
-        col.insert([{ firstname: userFirstname, name: userName }], function(err, result) {
+        col.insert([{ firstname: userFirstname, name: userName }], function (err, result) {
             test.equal(null, err);
         });
     });
@@ -40,22 +39,28 @@ function checkData() {
 }
 
 function showData() {
-    var MongoClient = require('mongodb').MongoClient,
-        test = require('assert');
+    var MongoClient = require('mongodb').MongoClient;
 
-    // Connection url
-    var url = 'mongodb://localhost:27017/test';
 
-    // Connect using MongoClient
-    MongoClient.connect(url, function(err, db) {
-        console.log("connected to DB");
 
-        // Create a collection
-        var col = db.collection('user');
+    // Connect to the db
+    MongoClient.connect("mongodb://localhost:27017/test", function (err, db) {
+        if (err) { return console.dir(err); } //add error msg here
 
-        // print all documents in a div (TODO: print document in table row, then add buttons for editing)
-        console.log(col.find());
-        document.getElementById("displayCollectionDiv").innerHTML = col.find(["firstname", "name"]);
+        var collection = db.collection('user');
+        var docs = [{ firstname: "Nicolas", name: "Crausaz" }];
+
+        collection.insert(docs, function (err, result) {
+
+            collection.find().toArray(function (err, items) { });
+
+            var stream = collection.find({ firstname: { $ne: 2 } }).stream();
+            console.dir(stream.on("data", function (item) { }));
+            console.dir(stream.on("end", function () { }));
+
+            //collection.findOne({ firstname: "Nicolas" }, function (err, item) { });
+
+        });
     });
 
 }
