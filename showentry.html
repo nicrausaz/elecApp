@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script.js"></script>
-	<script>//showData();</script>
 </head>
 
 <body>
@@ -30,7 +29,7 @@
 				<option value="name">Name</option>
 			</select>
 			<input type="text" class="pure-input-rounded" id="requestedExpression" placeholder="expression to search">
-			<button type="submit" class="pure-button" onclick="showDataAccordingToSelection()">Search</button>
+			<button type="submit" class="pure-button" onclick="checkIfInputsEmpty()">Search</button>
 		</div>
 		<div id="displayCollectionDiv"></div>
 		<div>
