@@ -17,7 +17,6 @@ MongoClient.connect(url, function (err, db) {
 });
 
 
-
 // SCRIPTS FOR ADDENTRY.HTML
 function sendDatas() {
     // Insert data as documents
@@ -26,11 +25,7 @@ function sendDatas() {
     });
 }
 
-function printErrorMsg() {
-    document.getElementById("errorSection").innerHTML = "Please enter values in both fields";
-}
-
-function checkData() {
+function checkFormData() {
 
     //TODO rewrite this function
     var userFirstname = document.getElementById("firstname").value;
@@ -38,7 +33,7 @@ function checkData() {
 
     (getUserFirstname() == "" || getUserFirstname() === null) ? error1 = 0 : error1 = 1;
     (getUserName() == "" || getUserName() === null) ? error2 = 0 : error2 = 1;
-    return ((error1 && error2) ? sendDatas() : printErrorMsg());
+    return ((error1 && error2) ? sendDatas() : showErrorMsg("errorSection", "Please enter values in both fields"));
 }
 
 
@@ -47,17 +42,20 @@ function checkData() {
 function checkIfInputsEmpty() {
 
     if ((getSelectedAttribute() == "notSelected") && (getSelectedExpression() == "")) {
-        console.log("all data");
+        clearErrorMsg("dbErrors");
+        // will show all collection
         showAllData();
 
     } else if ((getSelectedAttribute() == "notSelected") || (getSelectedExpression() == "")) {
-        console.log("something is missing");
+        //will show error msg because 1 field is empty
         clearCollectionDiv();
+        showErrorMsg("dbErrors", "Please enter values in both fields");
     } else {
+        clearErrorMsg("dbErrors");
+        // will show requested data from collection
         getSelectedAttribute() == "firstname" ? showDataAccordingToFirstname() : showDataAccordingToLastname();
         console.log("not all data");
     }
-    //TODO: Check if 2 input are filled
 }
 
 function getSelectedAttribute() {
@@ -81,6 +79,14 @@ function getCollection(db) {
     return col = db.collection('user');
 }
 
+function showErrorMsg(errorZone, errorMsg) {
+    document.getElementById(errorZone).innerHTML = errorMsg;
+}
+
+function clearErrorMsg(errorZone) {
+    document.getElementById(errorZone).innerHTML = "";
+}
+
 function clearCollectionDiv() {
     document.getElementById("displayCollectionDiv").innerHTML = "";
     console.log("cleared");
@@ -90,7 +96,7 @@ function checkResults(results) {
     if (results != "") {
         document.getElementById("displayCollectionDiv").innerHTML = JSON.stringify(results);
     } else {
-        document.getElementById("dbErrors").innerHTML = "No data were found";
+        showErrorMsg("displayCollectionDiv", "No data were found");
     }
 }
 
@@ -126,6 +132,4 @@ function showDataAccordingToLastname() {
     });
 }
 
-function createTable() {
-
-}
+function createTable() { }
