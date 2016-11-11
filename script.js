@@ -125,3 +125,7 @@ function showDataAccordingToLastname() {
         checkResults(results);
     });
 }
+
+function createTable() {
+
+}
