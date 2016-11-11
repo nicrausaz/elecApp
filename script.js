@@ -21,7 +21,7 @@ MongoClient.connect(url, function (err, db) {
 // SCRIPTS FOR ADDENTRY.HTML
 function sendDatas() {
     // Insert data as documents
-    col.insert([{ firstname: getUserFirstname(), name: getUserName() }], function (err, result) {
+    col.insert([{ firstname: getUserFirstname(), lastname: getUserName() }], function (err, result) {
         test.equal(null, err);
     });
 }
@@ -34,7 +34,7 @@ function checkData() {
 
     //TODO rewrite this function
     var userFirstname = document.getElementById("firstname").value;
-    var userName = document.getElementById("name").value;
+    var userName = document.getElementById("lastname").value;
 
     (getUserFirstname() == "" || getUserFirstname() === null) ? error1 = 0 : error1 = 1;
     (getUserName() == "" || getUserName() === null) ? error2 = 0 : error2 = 1;
@@ -46,22 +46,22 @@ function checkData() {
 
 function checkIfInputsEmpty() {
 
-    console.log(getSelectedAttribute());
-    console.log(getSelectedExpression());
-
-
     if ((getSelectedAttribute() == "notSelected") && (getSelectedExpression() == "")) {
         console.log("all data");
-        showData();
-        
+        showAllData();
+
+    } else if ((getSelectedAttribute() == "notSelected") || (getSelectedExpression() == "")) {
+        console.log("something is missing");
+        clearCollectionDiv();
     } else {
+        getSelectedAttribute() == "firstname" ? showDataAccordingToFirstname() : showDataAccordingToLastname();
         console.log("not all data");
-        showDataAccordingToSelection();
     }
     //TODO: Check if 2 input are filled
 }
 
 function getSelectedAttribute() {
+    // TODO: implement it back next refactor
     return document.getElementById("requestedAttribute").value;
 }
 
@@ -74,11 +74,16 @@ function getUserFirstname() {
 }
 
 function getUserName() {
-    return userName = document.getElementById("name").value;
+    return userName = document.getElementById("lastname").value;
 }
 
 function getCollection(db) {
     return col = db.collection('user');
+}
+
+function clearCollectionDiv() {
+    document.getElementById("displayCollectionDiv").innerHTML = "";
+    console.log("cleared");
 }
 
 function checkResults(results) {
@@ -89,22 +94,34 @@ function checkResults(results) {
     }
 }
 
-function showData() {
+function showAllData() {
+
+    clearCollectionDiv();
     col.find().toArray(function (err, results) {
         checkResults(results);
     });
 }
 
-function showDataAccordingToSelection() {
+function showDataAccordingToFirstname() {
 
-    var attribute = getSelectedAttribute();
     var expression = getSelectedExpression();
+    console.log("Looking for " + expression + " as firstname");
 
-    console.log("Looking for " + expression + " as " + attribute);
+    clearCollectionDiv();
 
-    //Show asked data
-    col.find({ firstname: expression }).toArray(function (err, results) {
+    col.find({ "firstname": expression }).toArray(function (err, results) {
         checkResults(results);
     });
 }
 
+function showDataAccordingToLastname() {
+
+    var expression = getSelectedExpression();
+    console.log("Looking for " + expression + " as lastname");
+
+    clearCollectionDiv();
+
+    col.find({ "lastname": expression }).toArray(function (err, results) {
+        checkResults(results);
+    });
+}

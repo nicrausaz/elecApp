@@ -26,12 +26,28 @@
 			<select id="requestedAttribute">
 				<option value="notSelected">Select attribute</option>
 				<option value="firstname">Firstname</option>
-				<option value="name">Name</option>
+				<option value="lastname">Name</option>
 			</select>
 			<input type="text" class="pure-input-rounded" id="requestedExpression" placeholder="expression to search">
 			<button type="submit" class="pure-button" onclick="checkIfInputsEmpty()">Search</button>
 		</div>
 		<div id="displayCollectionDiv"></div>
+
+		<table class="pure-table pure-table-horizontal" id="resultTable">
+			<thead>
+				<tr>
+					<th>_id</th>
+					<th>Firstname</th>
+					<!-- get headers from attribute -->
+					<th>Last Name</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>test</td>
+				<td>test</td>
+				<td>test</td>
+			</tr>
+		</table>
 		<div>
 			<!--<button class="button-warning pure-button">Clear</button>-->
 		</div>
@@ -50,9 +66,3 @@
 </script>
 
 </html>
-
-<!--
-All of the Node.js APIs are available in this renderer process
-	We are using Node.js <script>document.write(process.versions.node)</script>, Chromium <script>document.write(process.versions.chrome)</script>,
-	and Electron <script>document.write(process.versions.electron)</script>.
--->
