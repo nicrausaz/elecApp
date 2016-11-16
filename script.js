@@ -16,7 +16,6 @@ MongoClient.connect(url, function (err, db) {
     }
 });
 
-
 // SCRIPTS FOR ADDENTRY.HTML
 function sendDatas() {
     // Insert data as documents
@@ -129,6 +128,13 @@ function showDataAccordingToLastname() {
     });
 }
 
+function resetSelection() {
+    document.getElementById("requestedAttribute").value = "notSelected";
+    document.getElementById("requestedExpression").value = "";
+    clearCollectionDiv();
+}
+/*
 function getId() { }
 
 function createTable() { }
+*/

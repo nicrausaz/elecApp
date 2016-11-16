@@ -46,6 +46,12 @@ li a:hover:not(.active) {
     padding-bottom: 29px;
 }
 
+.fixedBottom {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+}
+
 #menulist {
     list-style-type: none;
     margin: 0;
@@ -61,6 +67,8 @@ li a:hover:not(.active) {
 #requestedAttribute {
     margin-right: 50px;
 }
+
+
 /*
 #resultTable{
     align to center
