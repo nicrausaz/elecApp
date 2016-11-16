@@ -3,7 +3,7 @@
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
 // Connection url
-var url = 'mongodb://localhost:27017/test';
+var url = 'mongodb://serverbros.ddns.net:27017/test';
 // Connect using MongoClient
 MongoClient.connect(url, function (err, db) {
     if (err) {
@@ -25,17 +25,27 @@ function sendDatas() {
     });
 }
 
+function testtest(dataToCheck) {
+//not working
+    for (var i = 0; i < dataToCheck.length; i++) {
+        if(dataToCheck[i] == "" || dataToCheck[i] == null){
+            //error
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
 function checkFormData() {
 
-    //TODO rewrite this function
-    var userFirstname = document.getElementById("firstname").value;
-    var userName = document.getElementById("lastname").value;
-
-    (getUserFirstname() == "" || getUserFirstname() === null) ? error1 = 0 : error1 = 1;
-    (getUserName() == "" || getUserName() === null) ? error2 = 0 : error2 = 1;
-    return ((error1 && error2) ? sendDatas() : showErrorMsg("errorSection", "Please enter values in both fields"));
+    var dataToCheck = [getUserFirstname(), getUserFirstname()];
+    
+    if (testtest(dataToCheck) == true) {
+        sendDatas();
+    }else{
+        showErrorMsg("errorSection", "Please enter values in both fields");
+    }
 }
-
 
 // SCRIPTS FOR SHOWENTRY
 
