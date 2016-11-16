@@ -25,24 +25,11 @@ function sendDatas() {
     });
 }
 
-function testtest(dataToCheck) {
-//not working
-    for (var i = 0; i < dataToCheck.length; i++) {
-        if(dataToCheck[i] == "" || dataToCheck[i] == null){
-            //error
-            return false;
-        } else {
-            return true;
-        }
-    }
-}
 function checkFormData() {
 
-    var dataToCheck = [getUserFirstname(), getUserFirstname()];
-    
-    if (testtest(dataToCheck) == true) {
+    if (!(getUserFirstname() == "" || getUserName() == "")) {
         sendDatas();
-    }else{
+    } else {
         showErrorMsg("errorSection", "Please enter values in both fields");
     }
 }
@@ -141,5 +128,7 @@ function showDataAccordingToLastname() {
         checkResults(results);
     });
 }
+
+function getId() { }
 
 function createTable() { }
