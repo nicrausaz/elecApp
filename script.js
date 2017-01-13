@@ -3,7 +3,7 @@
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
 // Connection url
-var url = 'mongodb://serverbros.ddns.net:27017/test';
+var url = 'mongodb://192.168.1.121:27017/electron';
 // Connect using MongoClient
 MongoClient.connect(url, function (err, db) {
     if (err) {
@@ -12,7 +12,7 @@ MongoClient.connect(url, function (err, db) {
         dbErrorDiv.innerHTML = dbErrorMsg;
     } else {
         console.log("connected to DB");
-        return col = db.collection('user');
+        return col = db.collection('people');
     }
 });
 
